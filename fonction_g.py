@@ -24,3 +24,15 @@ resultat=resultat.reshape((int(M),2))
 plt.plot(resultat2[:,0],resultat2[:,1],color="r")
 plt.title("Test avec Angle de 90°")
 plt.show()
+
+# do back. 
+resultat_back1=np.array([fonction_g(elt,prop=1/2,v=1,avance=2) for elt in vecteur_temps])
+M=resultat_back1.shape[0]
+resultat_back=resultat_back1.reshape((int(M),2))
+plt.plot(resultat_back1[:,0],resultat_back1[:,1])
+resultat_back2=np.array([fonction_g(elt,prop=-1/2,v=1,avance=2) for elt in vecteur_temps])
+M=resultat_back2.shape[0]
+resultat_back=resultat_back2.reshape((int(M),2))
+plt.plot(resultat_back2[:,0],resultat_back2[:,1],color="r")
+plt.title("Test avec Angle de -90°")
+plt.show()
