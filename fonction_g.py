@@ -55,12 +55,12 @@ def fonction_g(t,prop,v,avance):
 vecteur_temps=np.linspace(0,10,100)
 angle=np.pi/4
 
-resultat=np.array([fonction_g(elt,prop=1/2,v=1,avance=1) for elt in vecteur_temps])
+resultat=np.array([fonction_g(elt,prop=1/8,v=1,avance=1) for elt in vecteur_temps])
 M=resultat.shape[0]
 resultat=resultat.reshape((int(M),2))
 plt.plot(resultat[:,0],resultat[:,1])
 # 
-resultat2=np.array([fonction_g(elt,prop=-1/2,v=1,avance=2) for elt in vecteur_temps])
+resultat2=np.array([fonction_g(elt,prop=-1/8,v=1,avance=2) for elt in vecteur_temps])
 M=resultat.shape[0]
 resultat=resultat.reshape((int(M),2))
 plt.plot(resultat2[:,0],resultat2[:,1],color="r")
