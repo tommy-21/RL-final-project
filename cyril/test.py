@@ -18,6 +18,9 @@ renderFlag = False
 
 ddqn_agent = DDQNAgent(alpha=0.0005, gamma=0.99, n_actions=5, epsilon=1.00, epsilon_end=0.10, epsilon_dec=0.9995, replace_target= REPLACE_TARGET, batch_size=512, input_dims=19, fname="test.h5")
 
+ddqn_agent.load_model()
+ddqn_agent.update_network_parameters()
+
 ddqn_scores = []
 eps_history = []
 

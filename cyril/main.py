@@ -20,7 +20,7 @@ ddqn_agent = DDQNAgent(alpha=0.0005, gamma=0.99, n_actions=5, epsilon=1.00, epsi
 
 # if you want to load the existing model uncomment this line.
 # careful an existing model might be overwritten
-#ddqn_agent.load_model()
+ddqn_agent.load_model()
 
 ddqn_scores = []
 eps_history = []
