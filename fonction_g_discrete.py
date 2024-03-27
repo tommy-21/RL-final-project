@@ -1,7 +1,8 @@
 
 import numpy as np
 import matplotlib.pyplot as plt
-def fonction_g(choix_angle,v):
+
+def fonction_g_discrete(choix_angle,v):
     if v==0:
         print("ici")
         x=0
