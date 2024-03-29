@@ -21,13 +21,13 @@ GameTime = 0
 GameHistory = []
 renderFlag = False
 
-ddqn_agent = Dqn(input_size=19, nb_action=8, gamma=0.9)
+dqn_agent = Dqn(input_size=19, nb_action=8, gamma=0.9)
 
 # if you want to load the existing model uncomment this line.
 # careful an existing model might be overwritten
 #ddqn_agent.load_model()
 
-ddqn_scores = []
+dqn_scores = []
 eps_history = []
 
 def run():
@@ -59,7 +59,7 @@ def run():
             #         if event.key == K_ESCAPE:
             #             return True
             
-            action = ddqn_agent.update(new_signal=observation, reward=reward)
+            action = dqn_agent.update(new_signal=observation, reward=reward)
             observation_, reward, done = game.step(action, game_choice)
             observation_ = np.array(observation_)
 
@@ -86,14 +86,14 @@ def run():
                 game.render(action)
 
         # eps_history.append(ddqn_agent.epsilon)
-        ddqn_scores.append(score)
-        avg_score = np.mean(ddqn_scores[max(0, e-100):(e+1)])
+        dqn_scores.append(score)
+        avg_score = np.mean(dqn_scores[max(0, e-100):(e+1)])
 
         if e % REPLACE_TARGET == 0 and e > REPLACE_TARGET:
-            ddqn_agent.update_network_parameters()
+            dqn_agent.update_network_parameters()
 
         if e % 10 == 0 and e > 10:
-            ddqn_agent.save()
+            dqn_agent.save()
             print("save model")
             
         print('episode: ', e,'score: %.2f' % score,
