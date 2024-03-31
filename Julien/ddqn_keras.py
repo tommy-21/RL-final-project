@@ -84,7 +84,7 @@ class DDQNAgent(object):
     def learn(self):
         if self.memory.mem_cntr > self.batch_size:
             state, action, reward, new_state, done = self.memory.sample_buffer(self.batch_size)
-
+            
             action_values = np.array(self.action_space, dtype=np.int8)
             action_indices = np.dot(action, action_values)
 
@@ -125,11 +125,12 @@ class Brain:
         self.NbrActions = NbrActions
         self.batch_size = batch_size
         self.model = self.createModel()
-        
     
     def createModel(self):
         model = tf.keras.Sequential()
-        model.add(tf.keras.layers.Dense(256, activation=tf.nn.relu)) #prev 256 
+        model.add(tf.keras.layers.Dense(256, activation=tf.nn.relu)) #prev 256
+        model.add(tf.keras.layers.Dense(512, activation=tf.nn.relu))
+        model.add(tf.keras.layers.Dense(256, activation=tf.nn.relu))
         model.add(tf.keras.layers.Dense(self.NbrActions, activation=tf.nn.softmax))
         model.compile(loss = "mse", optimizer="adam")
 
@@ -149,4 +150,4 @@ class Brain:
         variables2 = TrainNet.model.trainable_variables
         for v1, v2 in zip(variables1, variables2):
             v1.assign(v2.numpy())
-        
+
