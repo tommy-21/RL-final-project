@@ -8,7 +8,7 @@ from pygame.locals import *
 from ai import Dqn
 
 TOTAL_GAMETIME = 1000 # Max game time for one episode
-N_EPISODES = 1
+N_EPISODES = 100
 REPLACE_TARGET = 50
 
 interface = GameEnv.Interface()

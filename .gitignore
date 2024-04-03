@@ -127,6 +127,7 @@ venv/
 ENV/
 env.bak/
 venv.bak/
+Julien/pygameEnv
 
 # Spyder project settings
 .spyderproject
