@@ -28,6 +28,8 @@ class ReplayBuffer(object):
         else:
             self.action_memory[index] = action
         self.reward_memory[index] = reward
+        # Le 1- done fait que la valeur va changer. 
+        # La valeur future de done sera 0. 
         self.terminal_memory[index] = 1 - done
         self.mem_cntr += 1
 
@@ -83,6 +85,9 @@ class DDQNAgent_V2(object):
         return action
 
     def learn(self):
+        # Le modèle n'apprend pas à chaque entrée. Il attend un certain nombre d'itérations. 
+        # A un certain intervalle de temps, le modèle apprend à partir d'un echantillon 
+        # d'actions. 
         if self.memory.mem_cntr > self.batch_size:
             state, action, reward, new_state, done = self.memory.sample_buffer(self.batch_size)
             action_indices=action
@@ -98,7 +103,8 @@ class DDQNAgent_V2(object):
             q_target = q_pred
 
             batch_index = np.arange(self.batch_size, dtype=np.int32)
-
+            # Done dit si certaines actions ont été effectuées. 
+            # Done dit si l'action est prise en compte. Il a déjà appris dessus. 
             q_target[batch_index, action_indices] = reward + self.gamma*q_next[batch_index, max_actions.astype(int)]*done
 
             _ = self.brain_eval.train(state, q_target)

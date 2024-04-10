@@ -68,10 +68,12 @@ def run():
                 counter = 0
 
             score += reward
-
+            # Enregistrer les actions choisies. 
             ddqn_agent.remember(states, action, reward, states_, int(done))
             states = states_
             sys.stdout = open(os.devnull, 'w')
+            # On lance l'apprentissage. 
+            # La fonction learn gère le contenu de la mémoire. 
             ddqn_agent.learn()
             sys.stdout = sys.__stdout__
             
