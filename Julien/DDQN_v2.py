@@ -99,7 +99,7 @@ class DDQNAgent_V2(object):
 
             batch_index = np.arange(self.batch_size, dtype=np.int32)
 
-            q_target[batch_index, action_indices] = reward + self.gamma*q_next[batch_index, max_actions.astype(int)]*done+q_target[batch_index, action_indices]
+            q_target[batch_index, action_indices] = reward + self.gamma*q_next[batch_index, max_actions.astype(int)]*done
 
             _ = self.brain_eval.train(state, q_target)
 
