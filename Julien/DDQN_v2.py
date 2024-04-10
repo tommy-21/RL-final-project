@@ -61,8 +61,8 @@ class DDQNAgent_V2(object):
         self.replace_target = replace_target
         self.memory = ReplayBuffer(mem_size, input_dims, n_actions, discrete=True)
        
-        self.brain_eval = Brain(input_dims, n_actions, batch_size)
-        self.brain_target = Brain(input_dims, n_actions, batch_size)
+        self.brain_eval = Brain(input_dims, n_actions,self.alpha,batch_size)
+        self.brain_target = Brain(input_dims, n_actions, self.alpha,batch_size)
 
 
     def remember(self, state, action, reward, new_state, done):
@@ -85,9 +85,9 @@ class DDQNAgent_V2(object):
     def learn(self):
         if self.memory.mem_cntr > self.batch_size:
             state, action, reward, new_state, done = self.memory.sample_buffer(self.batch_size)
-            
-            action_values = np.array(self.action_space, dtype=np.int8)
-            action_indices = np.dot(action, action_values)
+            action_indices=action
+            # action_values = np.array(self.action_space, dtype=np.int8)
+            # action_indices = np.dot(action, action_values)
 
             q_next = self.brain_target.predict(new_state)
             q_eval = self.brain_eval.predict(new_state)
@@ -99,7 +99,7 @@ class DDQNAgent_V2(object):
 
             batch_index = np.arange(self.batch_size, dtype=np.int32)
 
-            q_target[batch_index, action_indices] = self.alpha*(reward + self.gamma*q_next[batch_index, max_actions.astype(int)]*done)+(1-self.alpha)*q_target[batch_index, action_indices]
+            q_target[batch_index, action_indices] = reward + self.gamma*q_next[batch_index, max_actions.astype(int)]*done+q_target[batch_index, action_indices]
 
             _ = self.brain_eval.train(state, q_target)
 
@@ -121,10 +121,11 @@ class DDQNAgent_V2(object):
 
 
 class Brain:
-    def __init__(self, NbrStates, NbrActions, batch_size = 256):
+    def __init__(self, NbrStates, NbrActions, alpha,batch_size = 256,):
         self.NbrStates = NbrStates
         self.NbrActions = NbrActions
         self.batch_size = batch_size
+        self.alpha=alpha
         self.model = self.createModel()
     
     def createModel(self):
@@ -133,7 +134,8 @@ class Brain:
         model.add(tf.keras.layers.Dense(512, activation=tf.nn.relu))
         model.add(tf.keras.layers.Dense(256, activation=tf.nn.relu))
         model.add(tf.keras.layers.Dense(self.NbrActions))
-        model.compile(loss = "mse", optimizer="adam")
+        model.compile(loss="mse", optimizer=Adam(learning_rate=self.alpha))
+
 
         return model
     
