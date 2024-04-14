@@ -8,7 +8,7 @@ git clone https://github.com/tommy-21/RL-final-project.git
 ```
 Suivre maintenant les étapes suivantes pour : 
 -  se mettre dans le dossier `RL-final-project`;
--  créer un environnement virtuel avec un nom donné Attention : remplacer "<nom_de_votre_environnement>" par ce nom dans le code ci-dessous ;
+-  créer un environnement virtuel ;
 -  activer l'environnement virtuel ;
 -  installer les librairies nécessaires au bon fonctionnement de l'application ;
 -  lancer l'application et suivre les étapes dans la fenêtre qui s'affiche.
@@ -17,8 +17,8 @@ Tout le code nécessaire pour réaliser ces étapes se trouve dans le bloc suiva
 
 ```bash
 cd RL-final-project
-python -m venv <nom_de_votre_environnement>
-source <nom_de_votre_environnement>/bin/activate
+python -m venv venv
+source venv/bin/activate
 pip install requirements.txt
 python main.py
 ```
@@ -27,14 +27,17 @@ python main.py
 
 L'utilisateur du jeu de voiture automatique a le choix entre trois modes de jeu : 
 - le **mode automatique** 
-- le **mode semi-automatique**        et
-- le **mode manuel**   .
+- le **mode semi-automatique**
+- le **mode manuel**.
 
 ### Mode automatique 
+Dans ce mode, la voiture se déplace se déplace de manière automatique sans avoir besoin de l'utilisateur. Les actions (décisions) de la voiture sont prédites par le modèle **DDQN** implémenté derrière. Le jeu s'arrête lorsque la voiture rencontre un obstacle.
 
 ### Mode semi-automatique
+Ce mode est actuellement en cours d'implémentation. Pour l'instant, ce mode est semblable à celui automatique. 
 
 ### Mode manuel
+Ici, la voiture est guidée par l'utilisateur qui utilise les touches directionnelles.  
 
 ## Structure du Projet 
 Tout le code qui a permis d'implémenter l'application se trouve dans le dossier `quelque chose` dont la structure est la suivante : 
