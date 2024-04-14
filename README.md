@@ -63,6 +63,13 @@ La phase d'apprentissage a consisté d'une part à générer des données d'appr
 
 ### Simulation
 Pour obtenir les données d'apprentisage, plusieurs parties du jeu (épisodes) sont lancées les unes à la suite des autres. Chaque partie se termine lorsque la voiture cogne un obstacles. Les données récoltés sont les valeurs des variables d'état à un moment donné, l'action effectuée, les nouvelles valeurs des variables d'état suite à l'action effectuée. Les actions effectuées durant l'apprentissage sont déterminées soit au hasard, soit en utilisant le modèle encore en apprentissage. Le choix est déterminé par un facteur epsilon ($\epsilon$-greedy). La récompense correspondante à chaque état est aussi une valeur importante dans le processus d'apprentissage et est déduite à partir des valeurs des variables d'état.
+Les états sont définis grâce à la méthode du ray tracing. Cette méthode consiste à faire partir de la voiture plusieurs rayons. Ils permettent notamment de déterminer la distance entre la voiture et les différents murs présents. La méthode permet également de connaître pour chaque rayon le point du mur qui est atteint. 
+Les états correspondent alors aux distances par rapport aux murs les plus proches. Les rayons servent à évaluer la proximité du mur. Par ailleurs, un autre état pris en compte est le rapport entre la vitesse actuelle de la voiture et la vitesse maximale. 
+
+Les actions sont associées au fait d'accélérer ou de ralentir, de tourner à gauche ou à droite. 
+
+Les récompenses sont associées au fait d'atteindre le but. Si la voiture atteint la destination, le gain est de 10. Si la voiture entre en collision avec un mur, la pénalité est de -10. 
+Si la voiture s'éloigne du but à atteindre d'une itération à une autre, la récompense est de -1. Cela est calculé à l'aide de la méthode compute_distances de la classe Car. 
 
 ### Modélisation
 Ici, nous allons décrire le fonctionnement global du modèle DDQN expliqué [ici](https://towardsdatascience.com/double-deep-q-networks-905dd8325412).
