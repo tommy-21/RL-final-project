@@ -52,13 +52,14 @@ Le dossier `gameEnv` contient tout le code qui implémente l'application **pygam
 - la voiture est équipée de radars (`Rays.py`)  qui calculent la distance entre la voiture et les murs les plus proches ainsi que les différents obstacles ;
 - la fenêtre de jeu (`GameEnv.py`) qui regroupe tous ses composants.
 
-Le dossier `modele`
+Le dossier `model` contient l'architecture du réseau de neurones (modèle **Double Deep Q-Learning Network (DDQN)**).
 
+Le dossier `images` contient les images de la voiture et de la route. 
 
-
-
+Le dossier `utils` contient les fonctions utiles au bon fonctionnement du code.
 
 ## Apprentissage
+Ici, nous allons décrire le fonctionnement global du modèle DDQN expliqué [ici](https://towardsdatascience.com/double-deep-q-networks-905dd8325412).
 
 ### Modélisation
 
