@@ -60,9 +60,10 @@ Le dossier `utils` contient les fonctions utiles au bon fonctionnement du code.
 
 ## Apprentissage
 Ici, nous allons décrire le fonctionnement global du modèle DDQN expliqué [ici](https://towardsdatascience.com/double-deep-q-networks-905dd8325412).
+Le modèle DDQN est composé de deux réseaux de neurones : un réseau **target** et un réseau **eval**. Le réseau **eval** est celui utilisé pour prédire les différentes actions à prendre et le réseau target permet de stabiliser l'apprentissage en fournissant des estimations de Q-valeurs plus stables. Il est périodiquement mis à jour à partir du réseau eval pour suivre ses évolutions. 
 
 ### Modélisation
-
+Les deux réseaux de neurones sont constituées de trois couches denses qui permettent de prédire les q-valeurs pour chaque couple action-état. Nous avons utilisé l
 ### Simulation 
 
 ### Troisieme point non nommé 
