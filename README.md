@@ -31,7 +31,7 @@ L'utilisateur du jeu de voiture automatique a le choix entre trois modes de jeu 
 - le **mode manuel**.
 
 ### Mode automatique 
-Dans ce mode, la voiture se déplace se déplace de manière automatique sans avoir besoin de l'utilisateur. Les actions (décisions) de la voiture sont prédites par le modèle **DDQN** implémenté derrière. Le jeu s'arrête lorsque la voiture rencontre un obstacle.
+Dans ce mode, la voiture se déplace de manière automatique sans avoir besoin de l'utilisateur. Les actions (décisions) de la voiture sont prédites par le modèle **DDQN** implémenté derrière. Le jeu s'arrête lorsque la voiture rencontre un obstacle.
 
 ### Mode semi-automatique
 Ce mode est actuellement en cours d'implémentation. Pour l'instant, ce mode est semblable à celui automatique. 
@@ -40,8 +40,20 @@ Ce mode est actuellement en cours d'implémentation. Pour l'instant, ce mode est
 Ici, la voiture est guidée par l'utilisateur qui utilise les touches directionnelles.  
 
 ## Structure du Projet 
-Tout le code qui a permis d'implémenter l'application se trouve dans le dossier `quelque chose` dont la structure est la suivante : 
+La structure du code d'implémentation se présente comme suit : 
+
 ![Tree_Project](images/tree_project.png)
+
+Le dossier `gameEnv` contient tout le code qui implémente l'application **pygame**. L'environnement de jeu est composé de : 
+- la voiture (`Car.py`) représenté par un rectangle ;
+- la voie principale bordée par des murs (`Walls.py`) ;
+- les buts (`Goals.py`) qui sont représentes par des lignes. Ces lignes permettent à la voiture de maintenir un objectif précis en avançant sur la route ;
+- les obstacles (`Obstacles.py`) qui représentent en gros les feux tricolores, le passage piéton et un piéton ;
+- la voiture est équipée de radars (`Rays.py`)  qui calculent la distance entre la voiture et les murs les plus proches ainsi que les différents obstacles ;
+- la fenêtre de jeu (`GameEnv.py`) qui regroupe tous ses composants.
+
+Le dossier `modele`
+
 
 
 
