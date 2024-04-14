@@ -68,6 +68,7 @@ Les deux réseaux de neurones sont constituées de trois couches denses qui perm
 
 ### Troisieme point non nommé 
 
+![Image_Project](images/sortie.png)
 
 ## Contributeurs 
 Les membres du groupe sont les suivants : 
