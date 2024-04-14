@@ -3,7 +3,7 @@ import pygame
 import os
 import sys
 import numpy as np
-from ddqn_keras import DDQNAgent
+from DDQN_v2 import DDQNAgent_V2
 from collections import deque
 import random, math
 from pygame.locals import *
@@ -22,7 +22,7 @@ GameTime = 0
 GameHistory = []
 renderFlag = False
 
-ddqn_agent = DDQNAgent(alpha=0.0005, gamma=0.99, n_actions=5, epsilon=0.1, epsilon_end=0.10, epsilon_dec=0.9995, replace_target= REPLACE_TARGET, batch_size=64, input_dims=19)
+ddqn_agent = DDQNAgent_V2(alpha=0.0005, gamma=0.99, n_actions=5, epsilon=0.1, epsilon_end=0.10, epsilon_dec=0.9995, replace_target= REPLACE_TARGET, batch_size=64, input_dims=19)
 
 # if you want to load the existing model uncomment this line.
 # careful an existing model might be overwritten
