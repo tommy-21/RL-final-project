@@ -72,7 +72,7 @@ Ici, nous allons décrire le fonctionnement global du modèle DDQN expliqué [ic
 Les membres du groupe sont les suivants : 
 - [Nathan GORSE](https://github.com/Nathangos)
 - [Julien SAWADOGO](https://github.com/SAWAjulco)
-- [Cyril NEBANGA](https://github.com/odi77)
+- [Cyrille NEBANGA](https://github.com/odi77)
 - [Tom AGONNOUDE](https://github.com/tommy)
 - [Horeb SEIDOU](https://github.com/Horeb136)
 
