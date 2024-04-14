@@ -37,7 +37,7 @@ Dans ce mode, la voiture se déplace de manière automatique sans avoir besoin d
 Ce mode est actuellement en cours d'implémentation. Pour l'instant, ce mode est semblable à celui automatique. 
 
 ### Mode manuel
-Ici, la voiture est guidée par l'utilisateur qui utilise les touches directionnelles.  
+Dans ce mode, la voiture est guidée par l'utilisateur qui utilise les touches directionnelles.  
 
 ## Structure du Projet 
 La structure du code d'implémentation se présente comme suit : 
@@ -50,24 +50,24 @@ Le dossier `gameEnv` contient tout le code qui implémente l'application **pygam
 - les buts (`Goals.py`) qui sont représentes par des lignes. Ces lignes permettent à la voiture de maintenir un objectif précis en avançant sur la route ;
 - les obstacles (`Obstacles.py`) qui représentent en gros les feux tricolores, le passage piéton et un piéton ;
 - la voiture est équipée de radars (`Rays.py`)  qui calculent la distance entre la voiture et les murs les plus proches ainsi que les différents obstacles ;
-- la fenêtre de jeu (`GameEnv.py`) qui regroupe tous ses composants.
+- la fenêtre de jeu (`GameEnv.py`) qui utilise tous ces composants pour constituer l'environnement du jeu.
 
-Le dossier `model` contient l'architecture du réseau de neurones (modèle **Double Deep Q-Learning Network (DDQN)**).
+Le dossier `model` contient l'architecture du réseau de neurones (modèle **Double Deep Q-Learning Network (DDQN)**) utilisé pour choisir les actions de la voiture autonome.
 
 Le dossier `images` contient les images de la voiture et de la route. 
 
-Le dossier `utils` contient les fonctions utiles au bon fonctionnement du code.
+Le dossier `utils` contient d'autres fonctions utiles au bon fonctionnement du code.
 
 ## Apprentissage
- 
+La phase d'apprentissage a consisté d'une part à générer des données d'apprentissage à parties de plusieurs parties du jeu (simulations) puis à utiliser ces données pour faire tourner l'algorithme d'aprentissage qu'est le **Q-Learning**. Cette dernière partie a nécessité l'utilisation d'un modèle de réseaux de neurones qui aura pour rôle de modéliser la fonction qui associe à chaque couple état-action, une valeur donnée (la q-valeur).  
+
+### Simulation
+Pour obtenir les données d'apprentisage, plusieurs parties du jeu (épisodes) sont lancées les unes à la suite des autres. Chaque partie se termine lorsque la voiture cogne un obstacles. Les données récoltés sont les valeurs des variables d'état à un moment donné, l'action effectuée, les nouvelles valeurs des variables d'état suite à l'action effectuée. Les actions effectuées durant l'apprentissage sont déterminées soit au hasard, soit en utilisant le modèle encore en apprentissage. Le choix est déterminé par un facteur epsilon ($\epsilon$-greedy). La récompense correspondante à chaque état est aussi une valeur importante dans le processus d'apprentissage et est déduite à partir des valeurs des variables d'état.
 
 ### Modélisation
 Ici, nous allons décrire le fonctionnement global du modèle DDQN expliqué [ici](https://towardsdatascience.com/double-deep-q-networks-905dd8325412).
 Le modèle DDQN est composé de deux réseaux de neurones : un réseau **target** et un réseau **eval**. Le réseau **eval** est celui utilisé pour prédire les différentes actions à prendre et le réseau target permet de stabiliser l'apprentissage en fournissant des estimations de Q-valeurs plus stables. Il est périodiquement mis à jour à partir du réseau eval pour suivre ses évolutions.
 Les deux réseaux de neurones sont constituées de trois couches denses qui permettent de prédire les q-valeurs pour chaque couple action-état. Nous avons utilisé l
-### Simulation 
-
-### Troisieme point non nommé 
 
 ![Image_Project](images/sortie.png)
 
