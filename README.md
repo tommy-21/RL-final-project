@@ -41,6 +41,7 @@ Ici, la voiture est guidée par l'utilisateur qui utilise les touches directionn
 
 ## Structure du Projet 
 Tout le code qui a permis d'implémenter l'application se trouve dans le dossier `quelque chose` dont la structure est la suivante : 
+![Tree_Project](images/tree_project.png)
 
 
 
